@@ -1,0 +1,45 @@
+# === 敏感配置 ===
+.env
+*.env.local
+*.env.production
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === 日志 ===
+logs/
+*.log
+
+# === 运行时产物 ===
+processed_files_md5.txt
+
+# === 模型文件（过大，不纳入版本管理） ===
+rag/huggingface/
+model/*.pth
+model/*.pt
+model/*.onnx
+*.pth
+*.pt
+*.onnx
+
+# === Docker ===
+docker-compose.override.yml
+
+# === 临时文件 ===
+*.tmp
+*.bak

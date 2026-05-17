@@ -1,0 +1,54 @@
+# ====================================
+# UVAIS 海洋牧场智能运维系统
+# Milvus 向量数据库及混合检索配置
+# ====================================
+
+# 1. 数据库连接配置
+# 直接使用 URI 连接，比单独配 host 和 port 更简洁
+uri: "http://localhost:19530"
+
+# 2. 表结构配置
+# 集合名称 (与代码中的设定保持一致)
+collection_name: "marine_local_hybrid_knowledge"
+# BGE-M3 稠密向量维度固定为 1024
+vector_dim: 1024
+
+# 3. 核心大模型配置 (从 Python 代码中抽离)
+# 本地 BGE-M3 模型绝对路径
+model_path: "rag/huggingface/hub/models--BAAI--bge-m3/snapshots/5617a9f61b028005a4858fdac845db406aefb181"
+
+# 4. 混合检索策略配置
+search:
+  # 稠密向量检索的粗排 Top-K (给BGE-M3用的)
+  vector_top_k: 20
+  # 稀疏向量(关键词)检索的粗排 Top-K (给BM25用的)
+  bm25_top_k: 20
+  # 🎯 RRF 融合后返回给 Reranker 的候选文档数量
+  final_top_k: 20
+
+# 倒数排序融合 (RRF) 的平滑常数，默认 60 效果最佳
+rrf_k: 60
+
+# 7. 精排模型配置 (BGE-Reranker)
+reranker:
+  # Cross-Encoder 精排后返回给大模型的最终文档数
+  final_top_k: 5
+  # BGE-Reranker 本地模型路径
+  model_path: "rag/huggingface/hub/models--BAAI--bge-reranker-base/snapshots/2cfc18c9415c912f9d8155881c133215df768a70"
+
+
+# 5. 文档切片配置 (Data Chunking)
+chunk:
+  chunk_size: 500     # 基础块大小
+  chunk_overlap: 50   # 切片重叠字数（防上下文截断）
+  separators: ["\n\n", "\n", ".", "!", "?", "。", "！", "？", " ", ""]
+
+# 6. 本地数据与状态文件路径
+# 知识库原始文件存放目录
+data_path: "data"
+
+# MD5 查重记录文件 (移出 data 目录，直接存放在项目根目录)
+md5_hex_store: "processed_files_md5.txt"
+
+# 允许加载的文件类型
+allow_knowledge_file_type: ["txt", "pdf"]

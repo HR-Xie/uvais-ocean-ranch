@@ -1,0 +1,472 @@
+[
+  {
+    "query": "浪高超过多少米禁止潜水作业",
+    "expected_knowledge": "浪高超过2.0米时禁止任何人工潜水作业",
+    "source_file": "Safety_海洋气象与潜水作业安全红线.txt"
+  },
+  {
+    "query": "底层流速安全阈值是多少",
+    "expected_knowledge": "底层海流流速大于等于1.5节（0.77米/秒）禁止人工潜水",
+    "source_file": "Safety_海洋气象与潜水作业安全红线.txt"
+  },
+  {
+    "query": "网箱巡检的标准流程是什么",
+    "expected_knowledge": "目视检查网衣完整性、声呐扫描锚链张力、水下摄像机记录破损点",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "海星海胆灾害怎么防治",
+    "expected_knowledge": "调度ROV携带柔性机械臂无损抓取海星，调度高压水枪清洗船清除海胆",
+    "source_file": "SOP_生态灾害与敌害生物防治规范.txt"
+  },
+  {
+    "query": "ROV巡检作业有什么要求",
+    "expected_knowledge": "ROV下放速度不超过0.5m/s，回收速度不超过1m/s",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "海洋气象预警分为哪些等级",
+    "expected_knowledge": "蓝色预警风速6-7级、黄色预警8-9级、橙色预警10-11级、红色预警≥12级",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "深水网箱养殖有哪些技术要点",
+    "expected_knowledge": "网箱底部距海底不少于5米，适宜流速0.3-0.8m/s，溶解氧不低于5mg/L",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "海况不安全时应该改派什么设备",
+    "expected_knowledge": "仅允许抗流等级较高的工作级ROV下水执行任务，严禁人员出海",
+    "source_file": "Safety_海洋气象与潜水作业安全红线.txt"
+  },
+  {
+    "query": "水下能见度低于多少禁止潜水",
+    "expected_knowledge": "水下能见度低于1米禁止人工潜水",
+    "source_file": "Safety_海洋气象与潜水作业安全红线.txt"
+  },
+  {
+    "query": "台风什么级别预警禁止潜水作业",
+    "expected_knowledge": "收到台风黄色及以上预警禁止人工潜水",
+    "source_file": "Safety_海洋气象与潜水作业安全红线.txt"
+  },
+  {
+    "query": "海星清理完成后需要连续监测多少天",
+    "expected_knowledge": "清理完成后连续7天提升该区域UVAIS视觉巡检频次",
+    "source_file": "SOP_生态灾害与敌害生物防治规范.txt"
+  },
+  {
+    "query": "高压水枪清洗海胆的压力参数是多少",
+    "expected_knowledge": "压力参数设置大于15MPa对附着区域进行剥离",
+    "source_file": "SOP_生态灾害与敌害生物防治规范.txt"
+  },
+  {
+    "query": "发生赤潮时应该采取什么措施",
+    "expected_knowledge": "立即全功率开启水面增氧机，停止当日饲料投喂，调度水质采样无人船",
+    "source_file": "SOP_生态灾害与敌害生物防治规范.txt"
+  },
+  {
+    "query": "网衣破损后需要在多长时间内下发工单",
+    "expected_knowledge": "系统需在一分钟内下发红色紧急工单",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "应急潜水组需要在几小时内备齐修补材料",
+    "expected_knowledge": "应急潜水组需在2小时内备齐超高分子量聚乙烯修补网衣、水下射钉枪及卡扣",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "网衣修补完成后需要用什么设备排查入侵鱼类",
+    "expected_knowledge": "完成物理封堵后需动用声呐设备对网箱内部进行360度扫描",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "海底钢管框架腐蚀应该生成什么类型的工单",
+    "expected_knowledge": "腐蚀劣化周期较长，系统生成蓝色例行工单即可",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "腐蚀区域的修复需要焊接什么材料",
+    "expected_knowledge": "重新焊接锌块（牺牲阳极），并补涂环氧树脂水下防腐漆",
+    "source_file": "SOP_水下基础设施巡检与维修标准.txt"
+  },
+  {
+    "query": "LightAquaNet是什么模型",
+    "expected_knowledge": "LightAquaNet是图像增强模型，用于处理水下摄像头画面模糊和偏色",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "SEAD-YOLO模型漏检时怎么调整参数",
+    "expected_knowledge": "调低NMS非极大值抑制阈值，或适当降低置信度阈值至0.25",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "SEAD-YOLO模型的注意力机制叫什么",
+    "expected_knowledge": "SimAM无参数注意力机制",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "边缘计算设备过热时帧率怎么调整",
+    "expected_knowledge": "将视频流采样帧率从30FPS降级至5FPS，减轻GPU推理负荷",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "摄像头防污玻璃罩被物理遮挡时怎么处理",
+    "expected_knowledge": "下达工单启动摄像头自带的机械雨刷进行刮除，必要时回收清理",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "CAS-2025-08A案例中海星聚集在哪个区域",
+    "expected_knowledge": "UVAIS系统在C区底网连续3帧检测到超过5只海星聚集",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "星状诱捕笼捕获了多少只海星",
+    "expected_knowledge": "投放10个星状诱捕笼，48小时后成功捕获200余只海星，挽回经济损失约15万元",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "台风摩羯过境后ROV做了什么临时处理",
+    "expected_knowledge": "改由重型ROV携带临时封堵网进行水下束带固定，待3天后洋流平稳再永久修补",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "CAS-2025-11C案例中海胆藤壶覆盖率多少",
+    "expected_knowledge": "海胆及藤壶群落覆盖率超过40%，使用20MPa水下清洗盘耗时4小时",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "CAS-2026-02D赤潮事件中真鲷存活率多少",
+    "expected_knowledge": "因发现及时，该批次真鲷存活率保存在95%以上",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "CAS-2024-12E案例中锌块消耗到什么程度",
+    "expected_knowledge": "原有锌块牺牲阳极体积缩小至不足10%，触发防腐劣化预警",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "CAS-2026-03F案例中摄像头画面为什么全黑",
+    "expected_knowledge": "4号水下摄像头物理玻璃罩被大型海藻重度包裹，机械雨刷3次均卡死",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "CAS-2025-05G案例中网衣撕裂多大",
+    "expected_knowledge": "A区侧网发生80cm撕裂，SEAD-YOLO捕获到大型鲨鱼徘徊轨迹",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "面对鲨鱼入侵用了什么驱离手段",
+    "expected_knowledge": "开启水下高频声呐阵列进行强声驱离，并释放防鲨剂",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "深水网箱底部距离海底最少多少米",
+    "expected_knowledge": "网箱底部距离海底不少于5米，确保水体交换良好",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "真鲷的放养密度是多少",
+    "expected_knowledge": "真鲷8-12尾/立方米（体重3-5kg/尾）",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "网箱养殖溶解氧低于多少需要增氧",
+    "expected_knowledge": "溶解氧不低于5mg/L，低于4mg/L需增氧或降低密度",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "潜水员单次水下作业最长多长时间",
+    "expected_knowledge": "作业时限单次不超过45分钟，日累计不超过120分钟",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "水下作业最少需要几个人一组",
+    "expected_knowledge": "水下作业至少3人一组，1人潜水1人配气1人监护",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "幼鱼期每天投喂几次",
+    "expected_knowledge": "幼鱼期日投喂3-4次，投喂量为体重的5-8%",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "ROV下放和回收的速度限制是多少",
+    "expected_knowledge": "下放速度不超过0.5m/s，回收速度不超过1m/s",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "ROV巡检的覆盖率要求是什么",
+    "expected_knowledge": "覆盖率要求重点区域100%，一般区域大于80%",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "ROV巡检时网衣破损按大小怎么分级",
+    "expected_knowledge": "小型破损小于10cm、中型破损10-50cm需48小时内修复、大型破损大于50cm紧急修复",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "ROV密封件多久更换一次",
+    "expected_knowledge": "更换密封件每3个月一次，校准传感器每6个月一次",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "ROV巡检影像分辨率要求多少",
+    "expected_knowledge": "影像分辨率不低于1920×1080",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "ROV脐带缆断裂时怎么应急处置",
+    "expected_knowledge": "ROV失控时紧急切断电源，启动潜水员打捞程序",
+    "source_file": "SOP_水下机器人(ROV)巡检作业标准.txt"
+  },
+  {
+    "query": "海星危害等级是几星，哪个季节高发",
+    "expected_knowledge": "海星危害等级五星级极高危害，易发春季3-5月和秋季9-11月",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "敌害生物预警等级怎么划分",
+    "expected_knowledge": "黄色预警小于10只/网箱、橙色预警10-50只/网箱、红色预警大于50只/网箱",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "增强型防护网衣厚度要求多少",
+    "expected_knowledge": "增强型网衣厚度不小于3mm，表面防附着涂层",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "章鱼的危害等级和易发季节是什么",
+    "expected_knowledge": "章鱼危害等级四星级高危害，易发秋冬季节，会捕食鱼类和咬破网衣",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "物理防控敌害生物有哪些方法",
+    "expected_knowledge": "机械清除（人工打捞、ROV辅助、诱捕器）、物理隔离（声波驱赶、电栅栏、气幕防敌）",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "风速蓝色预警对应的风力是多少",
+    "expected_knowledge": "蓝色预警风速6-7级（10.8-17.1m/s）",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "24小时气压下降多少需要预警",
+    "expected_knowledge": "24小时内气压下降≥10hPa需预警",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "波高怎么分级",
+    "expected_knowledge": "轻浪小于0.5m、中浪0.5-1.25m、大浪1.25-2.5m、巨浪≥2.5m",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "溶解氧的危险阈值是多少",
+    "expected_knowledge": "溶解氧小于4mg/L为危险等级，警戒4-5mg/L，适宜5-6mg/L，良好≥6mg/L",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "气象监测传感器多久校准一次",
+    "expected_knowledge": "传感器每季度校准一次，每年送专业机构全面校准",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "台风应急预案中48小时前要做什么",
+    "expected_knowledge": "检查锚固系统必要时加固，清理网箱顶部附着物，准备应急物资",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "案例C001中网衣破损导致多少尾鱼逃逸",
+    "expected_knowledge": "约500尾真鲷逃逸，损失约15000元",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C002网箱倾斜了多少度",
+    "expected_knowledge": "3号网箱向西南方向倾斜约15度，浮浮部分沉入水中约30cm",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C003溶解氧最低降到了多少",
+    "expected_knowledge": "溶解氧降至2.1mg/L，鱼类浮头，死亡率约3.5%",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C007中ROV脐带缆在多少米深度断裂",
+    "expected_knowledge": "ROV在水下25米深度作业时脐带缆突然断裂，沉入约28米海底",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C008增氧机故障后溶解氧从多少降到多少",
+    "expected_knowledge": "溶解氧从5.8mg/L降至3.2mg/L，启动备用增氧机后2小时恢复至5.5mg/L",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C009中亚硝酸盐偏高到什么数值",
+    "expected_knowledge": "亚硝酸盐偏高达到0.15mg/L，网箱底部沉积物累积严重",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C010台风导致网箱损坏的具体情况",
+    "expected_knowledge": "台风最大风力12级浪高超过3米，2号网箱覆盖网破损，4号网箱锚链断裂漂移10米",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C006潜水员通讯中断时深度多少",
+    "expected_knowledge": "潜水深度18米，已下水作业35分钟，通过安全绳发送信号成功上浮",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "网衣建议使用时间不超过多久",
+    "expected_knowledge": "网衣使用时间不超过12个月，网衣使用时间超过18个月存在老化现象",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "赤潮缺氧事件中系统自动执行了哪些操作",
+    "expected_knowledge": "中枢立即自动切断了自动投喂机电源，全功率开启水面增氧机，并派AUV采集水样",
+    "source_file": "Log_历史典型告警与处置案例库.txt"
+  },
+  {
+    "query": "水下焊机可以修补多大的网衣破损",
+    "expected_knowledge": "破损直径小于30cm可采用水下高频焊机现场修补",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "台风过境后网箱巡检应在多长时间内完成",
+    "expected_knowledge": "台风或大风浪后48小时内完成全面检查",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "高温季节夜间溶解氧监测频次是多少",
+    "expected_knowledge": "高温季节夜间增加监测频次至每2小时一次",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "锚链建议使用时间不超过多久",
+    "expected_knowledge": "锚链使用时间不超过2年",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "网箱锚固系统需要几个锚位",
+    "expected_knowledge": "每个网箱至少设置6个锚位，呈六边形分布",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "成鱼期日投喂几次投喂量多少",
+    "expected_knowledge": "成鱼期日投喂1-2次，投喂量为体重的2-3%",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "单个网箱面积建议多大",
+    "expected_knowledge": "单个网箱面积建议600-1200平方米，圆形直径25-40米",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "海胆易发在哪个季节",
+    "expected_knowledge": "海胆危害等级四星，易发季节为夏季6-8月，喜好水流缓慢区域",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "禁止使用的化学品有哪些",
+    "expected_knowledge": "有机氯农药、有机磷农药、重金属制剂、未经批准的生物制剂",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "水温超过多少度需要高温预警",
+    "expected_knowledge": "水温大于30℃或48小时内升温≥5℃触发高温预警",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "台风预警48小时前应做什么准备",
+    "expected_knowledge": "检查锚固系统必要时加固，清理网箱顶部附着物，准备应急物资，通知相关人员",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "赤潮发生时应如何处置",
+    "expected_knowledge": "立即停止投喂，增加增氧设备，必要时转移鱼群，上报相关部门",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "溶解氧低于多少时停止危险作业",
+    "expected_knowledge": "溶解氧小于4mg/L触发黄色预警，停止危险作业",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "浊度的适宜范围和预警阈值是多少",
+    "expected_knowledge": "浊度适宜范围小于3NTU，预警阈值大于5NTU",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "案例C005投饵机故障原因是什么",
+    "expected_knowledge": "控制柜电源模块损坏，可能因近期雷雨天气导致",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C004中多少只海星被清除",
+    "expected_knowledge": "8小时内清除海星约180只，后续3天连续诱捕累计清除50只",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C003鱼类死亡率最终是多少",
+    "expected_knowledge": "最终死亡率约3.5%，损失约200尾，4小时后溶解氧恢复至5.2mg/L",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C002锚链磨损程度如何",
+    "expected_knowledge": "发现3个锚点锚链磨损超过50%，6小时内完成锚固系统修复",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "案例C001的预防措施有哪些",
+    "expected_knowledge": "网衣使用时间不超过12个月，台风后48小时内全面检查，每季度清理网箱周边海底",
+    "source_file": "Log_典型故障处理案例库.txt"
+  },
+  {
+    "query": "网衣应该选择什么材质",
+    "expected_knowledge": "选用高密度聚乙烯HDPE或尼龙材质，增强型网衣厚度≥3mm",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "海参的危害等级和易发季节",
+    "expected_knowledge": "海参危害等级二星级中低危害，易发冬季12-2月",
+    "source_file": "SOP_海洋敌害生物防控技术手册.txt"
+  },
+  {
+    "query": "SEAD-YOLO模型SimAM模块权重文件损坏怎么办",
+    "expected_knowledge": "确认边缘端显存充足且SimAM无参数注意力机制模块的权重文件未损坏",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "水下摄像头画面漆黑偏绿怎么排查",
+    "expected_knowledge": "检查边缘节点是否成功调用LightAquaNet图像增强模型，动态调整物理先验参数",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "困难样本自动收集机制是什么",
+    "expected_knowledge": "开启困难样本自动收集机制，将误报图片回传云端进行下一个版本的模型微调",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "边缘计算设备Ping值延迟极高可能是什么原因",
+    "expected_knowledge": "可能是水下密封舱散热不良，需将采样帧率从30FPS降级至5FPS",
+    "source_file": "Manual_UVAIS视觉感知与边缘侧排障.txt"
+  },
+  {
+    "query": "盐度的适宜范围和预警阈值是多少",
+    "expected_knowledge": "盐度适宜范围28-35‰，预警阈值盐度小于25‰或大于37‰",
+    "source_file": "SOP_海洋气象监测与预警标准.txt"
+  },
+  {
+    "query": "锚链重量和沉子配置要求是什么",
+    "expected_knowledge": "单锚链重量不少于500kg/个，沉石每个重量不少于200kg，间距5-8米",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "网箱轮休周期是多久",
+    "expected_knowledge": "每2-3年移动网箱位置，让海床恢复",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  },
+  {
+    "query": "养殖记录需要保存多少年",
+    "expected_knowledge": "用药记录台账保留至少3年，追溯记录保存不少于5年",
+    "source_file": "SOP_深水网箱养殖技术规范.txt"
+  }
+]
