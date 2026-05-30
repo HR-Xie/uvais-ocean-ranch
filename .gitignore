@@ -43,3 +43,4 @@ docker-compose.override.yml
 # === 临时文件 ===
 *.tmp
 *.bak
+docs/简历项目经历.md
