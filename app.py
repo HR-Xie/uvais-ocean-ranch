@@ -5,7 +5,7 @@ load_dotenv()
 
 import streamlit as st
 from agent.react_agent import ReactAgent
-from utils.pdf_export import markdown_to_pdf
+from utils.pdf import markdown_to_pdf
 
 st.set_page_config(
     page_title="海洋牧场智能调度管家",
@@ -403,7 +403,7 @@ with st.sidebar:
             if uploaded_files:
                 if st.button("📥 入库到知识库", use_container_width=True, key="btn_ingest"):
                     import os
-                    from rag.milvus_service import MilvusService
+                    from rag.engine import RagService
                     data_dir = "data"
                     os.makedirs(data_dir, exist_ok=True)
                     saved_count = 0
@@ -414,7 +414,7 @@ with st.sidebar:
                         saved_count += 1
                     with st.spinner(f"已保存 {saved_count} 个文件，正在向量化入库..."):
                         try:
-                            MilvusService().build_knowledge_base()
+                            RagService().build_knowledge_base()
                             st.success(f"入库完成：{saved_count} 个文件已加入知识库")
                         except Exception as e:
                             st.error(f"入库失败：{e}")
@@ -514,7 +514,7 @@ if prompt:
     response_messages = []
     with st.spinner("智能中枢思考中..."):
         res_stream = st.session_state["agent"].execute_stream(
-            prompt, history=chat_history, role=role
+            prompt, history=chat_history
         )
 
         def capture(generator, cache_list):
@@ -526,6 +526,6 @@ if prompt:
 
         st.chat_message("assistant").write_stream(capture(res_stream, response_messages))
         st.session_state["message"].append(
-            {"role": "assistant", "content": response_messages[-1]}
+            {"role": "assistant", "content": response_messages[-1] if response_messages else "**【系统提示】Agent 未生成有效回复，请重试。**"}
         )
     st.rerun()

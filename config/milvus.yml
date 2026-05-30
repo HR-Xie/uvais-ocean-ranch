@@ -17,19 +17,18 @@ vector_dim: 1024
 # 本地 BGE-M3 模型绝对路径
 model_path: "rag/huggingface/hub/models--BAAI--bge-m3/snapshots/5617a9f61b028005a4858fdac845db406aefb181"
 
-# 4. 混合检索策略配置
+# 4. 三阶段检索策略配置
 search:
-  # 稠密向量检索的粗排 Top-K (给BGE-M3用的)
-  vector_top_k: 20
-  # 稀疏向量(关键词)检索的粗排 Top-K (给BM25用的)
-  bm25_top_k: 20
-  # 🎯 RRF 融合后返回给 Reranker 的候选文档数量
-  final_top_k: 20
+  # 第一阶段：稠密向量语义检索召回数
+  dense_top_k: 30
+  # 第一阶段：稀疏向量(BM25)关键词检索召回数
+  sparse_top_k: 30
+  # 第二阶段：RRF 融合去重后的硬截断数 (送给精排的候选数)
+  rrf_cutoff_k: 30
+  # 倒数排序融合 (RRF) 的平滑常数 k，默认 60
+  rrf_k: 60
 
-# 倒数排序融合 (RRF) 的平滑常数，默认 60 效果最佳
-rrf_k: 60
-
-# 7. 精排模型配置 (BGE-Reranker)
+# 5. 精排模型配置 (BGE-Reranker)
 reranker:
   # Cross-Encoder 精排后返回给大模型的最终文档数
   final_top_k: 5
@@ -37,13 +36,13 @@ reranker:
   model_path: "rag/huggingface/hub/models--BAAI--bge-reranker-base/snapshots/2cfc18c9415c912f9d8155881c133215df768a70"
 
 
-# 5. 文档切片配置 (Data Chunking)
+# 6. 文档切片配置 (Data Chunking)
 chunk:
   chunk_size: 500     # 基础块大小
   chunk_overlap: 50   # 切片重叠字数（防上下文截断）
   separators: ["\n\n", "\n", ".", "!", "?", "。", "！", "？", " ", ""]
 
-# 6. 本地数据与状态文件路径
+# 7. 本地数据与状态文件路径
 # 知识库原始文件存放目录
 data_path: "data"
 
