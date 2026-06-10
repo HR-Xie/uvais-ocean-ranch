@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UVAIS — 海洋牧场智能调度</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #E8F0F6, #D5E2EC);
+  height: 100vh; display: flex; flex-direction: column; color: #1A2332;
+}
+header {
+  background: linear-gradient(135deg, #C4DCE8, #B0D0DE);
+  padding: 12px 24px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 2px 16px rgba(13,110,143,0.18); z-index: 10;
+}
+header h1 { font-size: 1.1rem; font-weight: 700; }
+header .dot { width: 8px; height: 8px; border-radius: 50%; background: #00E676;
+  box-shadow: 0 0 8px rgba(0,230,118,0.55); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
+
+main { flex: 1; display: flex; overflow: hidden; }
+
+/* Sidebar */
+aside {
+  width: 260px; background: linear-gradient(180deg, #DEE8F2, #E2ECF4);
+  padding: 24px 18px; border-right: 1px solid rgba(13,110,143,0.15);
+  display: flex; flex-direction: column; gap: 20px;
+}
+aside h3 { color: #0D6E8F; font-size: 0.85rem; margin-bottom: 8px; }
+.role-btn {
+  display: block; width: 100%; padding: 12px 16px; border: 2px solid rgba(13,110,143,0.2);
+  border-radius: 10px; background: transparent; cursor: pointer;
+  text-align: left; font-size: 0.9rem; color: #1A2332; margin-bottom: 6px;
+  transition: all 0.2s;
+}
+.role-btn:hover { border-color: #0D6E8F; background: rgba(13,110,143,0.1); }
+.role-btn.active { border-color: #0D6E8F; background: rgba(13,110,143,0.2); font-weight: 600; }
+.quick-btn {
+  display: block; width: 100%; padding: 8px 14px; border: 1px solid rgba(13,110,143,0.15);
+  border-radius: 20px; background: rgba(255,255,255,0.6); cursor: pointer;
+  font-size: 0.82rem; color: #0D6E8F; margin-bottom: 6px; transition: all 0.2s;
+}
+.quick-btn:hover { background: rgba(13,110,143,0.2); transform: translateY(-1px); }
+
+/* Chat */
+section {
+  flex: 1; display: flex; flex-direction: column; background: rgba(255,255,255,0.3);
+}
+#messages {
+  flex: 1; overflow-y: auto; padding: 24px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.msg { max-width: 75%; padding: 10px 16px; border-radius: 14px; font-size: 0.93rem; line-height: 1.65; animation: fadeIn 0.3s ease-out; white-space: pre-wrap; word-break: break-word; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.msg.user { align-self: flex-end; background: rgba(13,110,143,0.12); border-right: 3px solid #0A8FAB; border-radius: 12px 0 12px 12px; }
+.msg.assistant { align-self: flex-start; background: rgba(255,255,255,0.8); border-left: 3px solid #0D6E8F; border-radius: 0 12px 12px 12px; }
+.msg.error { align-self: center; color: #c0392b; font-size: 0.85rem; }
+
+/* Input */
+#input-bar {
+  padding: 14px 32px 18px; background: rgba(210,228,240,0.95);
+  backdrop-filter: blur(16px); border-top: 1px solid rgba(13,110,143,0.18);
+  display: flex; gap: 10px;
+}
+#input-bar input {
+  flex: 1; padding: 10px 16px; border: 1px solid rgba(13,110,143,0.2);
+  border-radius: 8px; font-size: 0.93rem; outline: none; background: rgba(255,255,255,0.85);
+}
+#input-bar input:focus { border-color: #0D6E8F; box-shadow: 0 0 0 2px rgba(13,110,143,0.15); }
+#input-bar button {
+  padding: 10px 24px; background: #0D6E8F; color: #fff; border: none;
+  border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-weight: 600;
+}
+#input-bar button:hover { background: #0A8FAB; }
+#input-bar button:disabled { background: #999; cursor: not-allowed; }
+
+.spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(13,110,143,0.2); border-top-color: #0D6E8F; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="dot"></span>
+  <h1>🌊 海洋牧场智能调度管家</h1>
+</header>
+
+<main>
+  <aside>
+    <div>
+      <h3>👤 角色切换</h3>
+      <button class="role-btn active" data-role="manager">🏗️ 总控人员</button>
+      <button class="role-btn" data-role="worker">🔧 水下作业人员</button>
+    </div>
+    <div id="quick-actions">
+      <h3>⚡ 快捷指令</h3>
+    </div>
+  </aside>
+
+  <section>
+    <div id="messages">
+      <div class="msg assistant">👋 欢迎使用 UVAIS 智能调度系统。请选择角色后输入指令。</div>
+    </div>
+    <div id="input-bar">
+      <input type="text" id="prompt" placeholder="输入您的指令..." autofocus
+        onkeydown="if(event.key==='Enter')send()">
+      <button id="send-btn" onclick="send()">发送</button>
+    </div>
+  </section>
+</main>
+
+<script>
+let role = "manager";
+let history = [];
+const msgs = document.getElementById("messages");
+const input = document.getElementById("prompt");
+const btn = document.getElementById("send-btn");
+
+// Role switch
+document.querySelectorAll(".role-btn").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".role-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    role = b.dataset.role;
+    history = [];
+    msgs.innerHTML = "";
+    renderQuickActions();
+    addMsg("assistant", role === "manager"
+      ? "🏗️ 总控模式：环境评估 · SOP检索 · 安全联锁 · 工单生成"
+      : "🔧 作业模式：3D定位 · 海况预警 · SOP要点 · 紧急撤离");
+  });
+});
+
+// Quick actions
+const quickActions = {
+  manager: [
+    ["🌊 查询B区实时海况", "查询B区实时海况"],
+    ["📋 派发网箱巡检工单", "派发网箱巡检工单"],
+    ["🔍 SEAD-YOLO视觉检测", "检查水下摄像头img_001的画面"],
+    ["📄 生成安全报告", "生成周度安全报告"],
+  ],
+  worker: [
+    ["📍 获取定位与测距", "获取当前位置与测距"],
+    ["🌊 查询海况安全", "查询当前海况安全"],
+    ["📖 查阅SOP规程", "查阅SOP操作规程"],
+    ["📸 查看ROV画面", "查看ROV视觉画面"],
+  ],
+};
+
+function renderQuickActions() {
+  const container = document.getElementById("quick-actions");
+  container.innerHTML = "<h3>⚡ 快捷指令</h3>";
+  quickActions[role].forEach(([label, query]) => {
+    const btn = document.createElement("button");
+    btn.className = "quick-btn";
+    btn.textContent = label;
+    btn.onclick = () => { input.value = query; send(); };
+    container.appendChild(btn);
+  });
+}
+renderQuickActions();
+
+// Messages
+function addMsg(kind, text) {
+  const div = document.createElement("div");
+  div.className = "msg " + kind;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+async function send() {
+  const q = input.value.trim();
+  if (!q) return;
+  input.value = "";
+  btn.disabled = true;
+
+  addMsg("user", q);
+
+  const asst = addMsg("assistant", "");
+  const spin = document.createElement("span");
+  spin.className = "spinner";
+  asst.textContent = "";
+  asst.appendChild(spin);
+
+  try {
+    const resp = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: q, history, role }),
+    });
+
+    if (!resp.ok) throw new Error(resp.statusText);
+
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split("\n\n");
+      buf = lines.pop();
+      for (const line of lines) {
+        if (line.startsWith("data: ")) {
+          const data = JSON.parse(line.slice(6));
+          asst.textContent += data.content;
+          msgs.scrollTop = msgs.scrollHeight;
+        }
+      }
+    }
+    if (buf.trim()) {
+      for (const line of buf.split("\n\n")) {
+        if (line.startsWith("data: ")) {
+          const data = JSON.parse(line.slice(6));
+          asst.textContent += data.content;
+        }
+      }
+    }
+
+    if (!asst.textContent.trim()) asst.textContent = "（无响应）";
+    history.push({ role: "user", content: q });
+    history.push({ role: "assistant", content: asst.textContent });
+  } catch (e) {
+    asst.textContent = "";
+    asst.classList.add("error");
+    asst.textContent = "连接失败: " + e.message;
+  } finally {
+    btn.disabled = false;
+    input.focus();
+  }
+}
+</script>
+</body>
+</html>
