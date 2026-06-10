@@ -1,8 +1,10 @@
 # Web框架
-streamlit>=1.28.0
 fastapi>=0.115.0
 uvicorn>=0.32.0
 httpx>=0.28.0
+
+# 浏览器自动化 (可选, 测试用)
+playwright>=1.48.0
 
 # AI和NLP
 langchain>=0.1.0

@@ -44,3 +44,4 @@ docker-compose.override.yml
 *.tmp
 *.bak
 docs/简历项目经历.md
+tests/screenshots/

@@ -7,37 +7,38 @@ echo   UVAIS 海洋牧场智能中枢 - 一键启动
 echo ==========================================
 echo.
 
-REM --- 检查 .env ---
+REM --- Check .env ---
 if not exist .env (
-    echo [1/4] 创建 .env 配置文件...
+    echo [1/4] Creating .env config...
     copy .env.example .env >nul
-    echo   ! 请编辑 .env 填入 DEEPSEEK_API_KEY 后重新运行
+    echo   ! Edit .env with your LLM_API_KEY then re-run
     pause
     exit /b 1
 )
 
-REM --- 启动数据库 ---
-echo [1/4] 启动 Milvus 向量数据库...
+REM --- Start Milvus ---
+echo [1/4] Starting Milvus...
 docker-compose up -d
-echo   等待 Milvus 就绪...
+echo   Waiting for Milvus...
 timeout /t 5 /nobreak >nul
 
-REM --- 构建知识库 ---
-echo [2/4] 检查知识库状态...
+REM --- Build knowledge base ---
+echo [2/4] Checking knowledge base...
 python -c "from pymilvus import MilvusClient; c=MilvusClient(uri='http://localhost:19530'); exit(0 if c.has_collection('marine_local_hybrid_knowledge') else 1)" >nul 2>&1
 if errorlevel 1 (
-    echo   首次运行，构建知识库...
+    echo   First run, building knowledge base...
     set PYTHONPATH=.
-    python rag/milvus_service.py
+    python -c "from rag.engine import RagService; RagService().build_knowledge_base()"
 ) else (
-    echo   知识库已就绪
+    echo   Knowledge base ready
 )
 
-REM --- 启动应用 ---
-echo [3/4] 启动 Streamlit 应用...
-start "" http://localhost:8501
-echo [4/4] 启动完成！
+REM --- Start FastAPI ---
+echo [3/4] Starting FastAPI server...
+start "" http://localhost:8000
+echo [4/4] Done!
 echo.
-echo   打开 http://localhost:8501 使用系统
+echo   Open http://localhost:8000
+echo   API docs: http://localhost:8000/docs
 echo.
-streamlit run app.py --server.port 8501
+python -m uvicorn server:app --host 0.0.0.0 --port 8000
